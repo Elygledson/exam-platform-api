@@ -1,0 +1,1 @@
+{"version":3,"file":"jsonErrorHandler.js","sourceRoot":"","sources":["../../src/middleware/jsonErrorHandler.ts"],"names":[],"mappings":";;;AAEO,IAAM,gBAAgB,GAAG,UAC9B,GAAU,EACV,GAAY,EACZ,GAAa,EACb,IAAkB;IAElB,GAAG,CAAC,MAAM,CAAC,GAAG,CAAC,CAAC,IAAI,CAAC,EAAE,OAAO,EAAE,KAAK,EAAE,OAAO,EAAE,GAAG,CAAC,OAAO,EAAE,KAAK,EAAE,GAAG,EAAE,CAAC,CAAC;AAC7E,CAAC,CAAC;AAPW,QAAA,gBAAgB,oBAO3B"}
