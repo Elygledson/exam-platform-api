@@ -1,6 +1,17 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  ManyToMany,
+  JoinTable,
+} from "typeorm";
 import { IsNotEmpty, IsNumber } from "class-validator";
 import { User } from "./User";
+import { Exam } from "./Exam";
 
 export enum Difficulty {
   EASY = "FÁCIL",
@@ -15,13 +26,13 @@ export class Question {
 
   @Column()
   @IsNotEmpty()
-  text: string;
+  description: string;
 
   @Column("simple-array", { nullable: true })
   options?: string[];
 
   @Column({ nullable: true })
-  correctAnswer: string;
+  answer: string;
 
   @Column({
     type: "enum",
@@ -40,4 +51,16 @@ export class Question {
 
   @ManyToOne(() => User, (user) => user.questions, { onDelete: "CASCADE" })
   author: User;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @Column()
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @Column()
+  @DeleteDateColumn()
+  deleteAt: Date;
 }

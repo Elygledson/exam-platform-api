@@ -4,7 +4,6 @@ import { User } from "../entity/User";
 import { validate } from "class-validator";
 import * as jwt from "jsonwebtoken";
 import { Course } from "../entity/Course";
-import { Question } from "../entity/Question";
 
 export class CourseController {
   static async getAllCourses(req: Request, res: Response) {
@@ -102,7 +101,6 @@ export class CourseController {
 
     course.name = name;
     course.description = description;
-    course.instructor = await userRepository.findOneOrFail(decoded["userId"]);
 
     const errors = await validate(course);
 

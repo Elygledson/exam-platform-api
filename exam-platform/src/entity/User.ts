@@ -12,7 +12,7 @@ import {
 import { IsEmail, IsNotEmpty, Length } from "class-validator";
 import * as bcrypt from "bcryptjs";
 import { Question } from "./Question";
-import { Course } from "./Course";
+import { Exam } from "./Exam";
 
 export enum UserRoles {
   STANDARD = "STANDARD",
@@ -65,8 +65,8 @@ export class User {
   @OneToMany(() => Question, (question) => question.author)
   questions?: Question[]; // Questões criadas pelo usuário
 
-  @OneToMany(() => Course, (course) => course.instructor)
-  courses?: Course[]; // Cursos criados pelo usuário
+  @OneToMany(() => Exam, (exam) => exam.author)
+  exams?: Exam[];
 
   @Column()
   @CreateDateColumn()

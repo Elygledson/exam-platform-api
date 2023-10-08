@@ -24,7 +24,7 @@ export class QuestionController {
       skip: req["skip"],
     });
 
-    return res.send({ success: true, message: "", data: questions });
+    return res.send({ success: true, message: "", questions });
   }
 
   static async getQuestionById(req: Request, res: Response) {
@@ -36,7 +36,7 @@ export class QuestionController {
         where: { id },
       });
 
-      return res.send({ success: true, message: "", data: question });
+      return res.send({ success: true, message: "", question });
     } catch (error) {
       console.log(error);
       return res
@@ -46,15 +46,15 @@ export class QuestionController {
   }
 
   static async createQuestion(req: Request, res: Response) {
-    let { text, options, correctAnswer, difficulty, score, category } =
+    let { description, options, answer, difficulty, score, category } =
       req.body;
     const token = <string>req.headers["auth"];
     let decoded = jwt.decode(token);
     const userRepository = getRepository(User);
     let question = new Question();
-    question.text = text;
+    question.description = description;
     question.options = options;
-    question.correctAnswer = correctAnswer;
+    question.answer = answer;
     question.difficulty = difficulty;
     question.score = score;
     question.category = category;
@@ -74,7 +74,7 @@ export class QuestionController {
       return res.status(201).send({
         success: true,
         message: "Questão cadastrada com sucesso",
-        data: question,
+        question,
       });
     } catch (error) {
       console.log(error);
@@ -86,7 +86,7 @@ export class QuestionController {
 
   static async editQuestion(req: Request, res: Response) {
     const id = parseInt(req.params.id);
-    let { text, difficulty, category, score } = req.body;
+    let { description, difficulty, category, score } = req.body;
     let question: Question;
     const questionRepository = getRepository(Question);
     try {
@@ -100,7 +100,7 @@ export class QuestionController {
       return;
     }
 
-    question.text = text;
+    question.description = description;
     question.difficulty = difficulty;
     question.category = category;
     question.score = score;
@@ -119,7 +119,7 @@ export class QuestionController {
       return res.send({
         success: true,
         message: "Questão Alterada",
-        data: question,
+        question,
       });
     } catch (error) {
       console.log(error);

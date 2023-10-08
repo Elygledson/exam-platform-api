@@ -8,7 +8,6 @@ import {
   JoinColumn,
 } from "typeorm";
 import { IsNotEmpty } from "class-validator";
-import { User } from "./User"; // Importe a entidade User
 
 @Entity()
 export class Course {
@@ -21,10 +20,6 @@ export class Course {
 
   @Column({ type: "text", nullable: true })
   description: string;
-
-  @ManyToOne(() => User) // Relacionamento muitos-para-um com a entidade User
-  @JoinColumn({ name: "instructorId" }) // Chave estrangeira para o instrutor do curso
-  instructor: User;
 
   @Column({ type: "date", nullable: true })
   startDate: Date;
