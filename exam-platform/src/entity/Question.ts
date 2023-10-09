@@ -19,6 +19,12 @@ export enum Difficulty {
   HARD = "DIFÍCIL",
 }
 
+export enum QuestionType {
+  boolean = "BOOLEAN",
+  mcq = "MCQ",
+  open = "OPEN",
+}
+
 @Entity()
 export class Question {
   @PrimaryGeneratedColumn()
@@ -33,6 +39,13 @@ export class Question {
 
   @Column({ nullable: true })
   answer: string;
+
+  @Column({
+    type: "enum",
+    enum: QuestionType,
+    default: QuestionType.mcq,
+  })
+  type: QuestionType;
 
   @Column({
     type: "enum",
