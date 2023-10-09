@@ -9,14 +9,13 @@ import {
   ManyToMany,
   JoinTable,
 } from "typeorm";
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumber, Max, Min } from "class-validator";
 import { User } from "./User";
-import { Exam } from "./Exam";
 
 export enum Difficulty {
-  EASY = "FÁCIL",
-  MEDIUM = "MÉDIO",
-  HARD = "DIFÍCIL",
+  EASY = "Fácil",
+  MEDIUM = "Médio",
+  HARD = "Difícil",
 }
 
 export enum QuestionType {
@@ -59,6 +58,8 @@ export class Question {
   category: string;
 
   @Column({ type: "float", default: 1.0 })
+  @Min(1.0)
+  @Max(5.0)
   @IsNumber()
   score: number;
 
