@@ -36,6 +36,7 @@ export class ExamController {
     try {
       const exam = await examRepository.findOneOrFail({
         where: { id },
+        relations: ["questions"],
       });
 
       return res.send({ success: true, message: "", exam });
